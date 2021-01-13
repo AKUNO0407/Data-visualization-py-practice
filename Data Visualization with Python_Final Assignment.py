@@ -3,7 +3,7 @@
 
 # # Data Visualization with Python - Final Assignment
 
-# Visualize data from a survey which was conducted to gauge an audience interest in different data science topics:
+# art1: Visualize data from a survey which was conducted to gauge an audience interest in different data science topics:
 # 1. Big Data (Spark / Hadoop)
 # 2. Data Analysis / Statistics
 # 3. Data Journalism
@@ -13,11 +13,6 @@
 # 
 # The participants had three options for each topic: **Very Interested**, **Somewhat interested**, and **Not interested**.  
 # 2,233 respondents completed the survey.
-
-# ## Part 1
-
-# In[42]:
-
 
 # Import libraries
 import pandas as pd
@@ -30,10 +25,6 @@ import matplotlib.pyplot as plt
 survey_path = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DV0101EN-SkillsNetwork/labs/FinalModule_Coursera/data/Topic_Survey_Assignment.csv"
 df = pd.read_csv(survey_path)
 df
-
-
-# In[70]:
-
 
 #Sort the data in descending order of Very Interested
 data = df.sort_values("Very interested", ascending=False)
@@ -63,17 +54,10 @@ for i in barChart.patches:
 plt.show()
 
 
-# ## Part 2
-
-# Create a Choropleth map to visualize crime in San Francisco.
+# Part2: Create a Choropleth map to visualize crime in San Francisco.
 # Essentially, you will need to create a dataframe that lists each neighborhood in San Francisco along with the corresponding total number of crimes(including all the 39 crime type categories).
-# 
 # Based on the San Francisco crime dataset, you will find that San Francisco consists of 10 main neighborhoods, namely:
-# 
 # Central, Southern, Bayview, Mission, Park, Richmond, Ingleside, Taraval, Northern, and, Tenderloin.
-
-# In[5]:
-
 
 # Insert the uploaded file and changed to pandas DatafRrame to code
 
@@ -81,17 +65,12 @@ df_SF = pd.read_csv('https://cf-courses-data.s3.us.cloud-object-storage.appdomai
 df_SF[['Category','PdDistrict']].groupby(['PdDistrict'], as_index = False).count()
 
 
-# In[6]:
-
 
 # install Folium since it's not a default package and then import it
 #!conda install -c conda-forge folium=0.5.0 --yes
 get_ipython().system('pip install folium')
 import folium
 print('Folium installed and imported!')
-
-
-# In[7]:
 
 
 # create a map of San Francisco and display it
@@ -102,9 +81,6 @@ latitude = 37.7749
 longitude = -122.4194 
 sanfran_map = folium.Map(location=[latitude, longitude], zoom_start = 12)
 sanfran_map
-
-
-# In[12]:
 
 
 # Map with marks
@@ -139,13 +115,9 @@ for lat, lng, label in zip(latitudes, longitudes, labels):
 sanfran_map.add_child(incidents)
 
 
-# In[13]:
 
-
-# Map with group marks
-
+## Map with group marks
 from folium import plugins
-
 # let's start again with a clean copy of the map of San Francisco
 sanfran_map = folium.Map(location = [latitude, longitude], zoom_start = 12)
 
@@ -163,8 +135,6 @@ for lat, lng, label, in zip(df_SF100.Y, df_SF100.X, df_SF100.Category):
 # display map
 sanfran_map
 
-
-# In[40]:
 
 
 # Creating Choropleth map
@@ -201,9 +171,6 @@ sf_map.choropleth(
 
 # display map
 sf_map
-
-
-# In[ ]:
 
 
 
